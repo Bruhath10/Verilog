@@ -1,0 +1,49 @@
+$date
+	Sat Sep 26 01:20:22 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module four_two_tb $end
+$var wire 1 ! b $end
+$var wire 1 " a $end
+$var reg 1 # p $end
+$var reg 1 $ q $end
+$var reg 1 % r $end
+$var reg 1 & s $end
+$scope module e1 $end
+$var wire 1 " a $end
+$var wire 1 ! b $end
+$var wire 1 # p $end
+$var wire 1 $ q $end
+$var wire 1 % r $end
+$var wire 1 & s $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0&
+0%
+0$
+1#
+0"
+0!
+$end
+#10
+1!
+1$
+0#
+#20
+1"
+0!
+1%
+0$
+#30
+1!
+1"
+1&
+0%
