@@ -1,0 +1,424 @@
+$date
+	Tue Nov 17 15:07:01 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module mult_test $end
+$var wire 1 ! result_rdy $end
+$var wire 16 " out [15:0] $end
+$var reg 1 # clk $end
+$var reg 16 $ inA [15:0] $end
+$var reg 16 % inB [15:0] $end
+$var reg 1 & input_available $end
+$var reg 1 ' reset $end
+$var reg 1 ( result_taken $end
+$scope module multiplication $end
+$var wire 1 # clk $end
+$var wire 1 & input_available $end
+$var wire 16 ) operands_bits_A [15:0] $end
+$var wire 16 * operands_bits_B [15:0] $end
+$var wire 1 ' reset $end
+$var wire 1 ( result_taken $end
+$var wire 1 ! result_rdy $end
+$var wire 16 + result_bits_data [15:0] $end
+$var wire 1 , M_mux_sel $end
+$var wire 1 - M_en $end
+$var wire 1 . B_zero $end
+$var wire 1 / B_mux_sel $end
+$var wire 1 0 B_en $end
+$var wire 1 1 A_en $end
+$scope module controlunit $end
+$var wire 1 # clk $end
+$var wire 1 & input_available $end
+$var wire 1 ' reset $end
+$var wire 1 ( result_taken $end
+$var wire 2 2 state [1:0] $end
+$var wire 1 . B_zero $end
+$var reg 1 1 A_en $end
+$var reg 1 0 B_en $end
+$var reg 1 / B_mux_sel $end
+$var reg 1 - M_en $end
+$var reg 1 , M_mux_sel $end
+$var reg 1 ! result_rdy $end
+$var reg 2 3 state_next [1:0] $end
+$scope module state_ff $end
+$var wire 1 # clk $end
+$var wire 2 4 d [1:0] $end
+$var wire 1 ' reset $end
+$var reg 2 5 q [1:0] $end
+$upscope $end
+$upscope $end
+$scope module datapath $end
+$var wire 1 1 A_en $end
+$var wire 1 0 B_en $end
+$var wire 1 / B_mux_sel $end
+$var wire 1 - M_en $end
+$var wire 1 , M_mux_sel $end
+$var wire 1 # clk $end
+$var wire 16 6 operands_bits_A [15:0] $end
+$var wire 16 7 operands_bits_B [15:0] $end
+$var wire 16 8 result_bits_data [15:0] $end
+$var wire 16 9 sub_out [15:0] $end
+$var wire 16 : add_out [15:0] $end
+$var wire 16 ; M_mux_out [15:0] $end
+$var wire 16 < M [15:0] $end
+$var wire 1 . B_zero $end
+$var wire 16 = B_mux_out [15:0] $end
+$var wire 16 > B [15:0] $end
+$var wire 16 ? A [15:0] $end
+$scope module A_ff $end
+$var wire 1 # clk $end
+$var wire 16 @ d [15:0] $end
+$var wire 1 1 en $end
+$var reg 16 A q [15:0] $end
+$upscope $end
+$scope module B_ff $end
+$var wire 1 # clk $end
+$var wire 1 0 en $end
+$var wire 16 B d [15:0] $end
+$var reg 16 C q [15:0] $end
+$upscope $end
+$scope module B_mux $end
+$var wire 16 D in0 [15:0] $end
+$var wire 1 / sel $end
+$var wire 16 E out [15:0] $end
+$var wire 16 F in1 [15:0] $end
+$upscope $end
+$scope module M_ff $end
+$var wire 1 # clk $end
+$var wire 1 - en $end
+$var wire 16 G d [15:0] $end
+$var reg 16 H q [15:0] $end
+$upscope $end
+$scope module M_mux $end
+$var wire 16 I in0 [15:0] $end
+$var wire 1 , sel $end
+$var wire 16 J out [15:0] $end
+$var wire 16 K in1 [15:0] $end
+$upscope $end
+$scope module add $end
+$var wire 16 L in0 [15:0] $end
+$var wire 16 M in1 [15:0] $end
+$var wire 16 N out [15:0] $end
+$upscope $end
+$scope module lt $end
+$var wire 16 O in1 [15:0] $end
+$var wire 1 . out $end
+$var wire 16 P in0 [15:0] $end
+$upscope $end
+$scope module sub $end
+$var wire 16 Q in0 [15:0] $end
+$var wire 16 R in1 [15:0] $end
+$var wire 16 S out [15:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx S
+b1 R
+bx Q
+bx P
+b0 O
+bx N
+bx M
+bx L
+bx K
+b0 J
+b0 I
+bx H
+b0 G
+bx F
+b111 E
+b111 D
+bx C
+b111 B
+bx A
+b1000 @
+bx ?
+bx >
+b111 =
+bx <
+b0 ;
+bx :
+bx 9
+bx 8
+b111 7
+b1000 6
+b0 5
+b0 4
+b0 3
+b0 2
+11
+10
+0/
+x.
+1-
+0,
+bx +
+b111 *
+b1000 )
+x(
+1'
+0&
+b111 %
+b1000 $
+1#
+bx "
+0!
+$end
+#5
+0#
+#10
+0.
+b1000 :
+b1000 K
+b1000 N
+b0 "
+b0 +
+b0 8
+b0 <
+b0 H
+b0 M
+b110 9
+b110 F
+b110 P
+b110 S
+b111 >
+b111 C
+b111 Q
+b1000 ?
+b1000 A
+b1000 L
+1#
+#13
+0'
+#15
+0#
+#20
+1#
+#23
+b1 3
+b1 4
+1&
+#25
+0#
+#30
+b110 =
+b110 B
+b110 E
+b1000 ;
+b1000 G
+b1000 J
+10
+1/
+11
+1-
+1,
+b1 2
+b1 5
+1#
+#35
+0#
+#40
+b101 =
+b101 B
+b101 E
+b10000 ;
+b10000 G
+b10000 J
+b101 9
+b101 F
+b101 P
+b101 S
+b110 >
+b110 C
+b110 Q
+b10000 :
+b10000 K
+b10000 N
+b1000 "
+b1000 +
+b1000 8
+b1000 <
+b1000 H
+b1000 M
+1#
+#45
+0#
+#50
+b11000 ;
+b11000 G
+b11000 J
+b100 =
+b100 B
+b100 E
+b11000 :
+b11000 K
+b11000 N
+b10000 "
+b10000 +
+b10000 8
+b10000 <
+b10000 H
+b10000 M
+b100 9
+b100 F
+b100 P
+b100 S
+b101 >
+b101 C
+b101 Q
+1#
+#55
+0#
+#60
+b11 =
+b11 B
+b11 E
+b100000 ;
+b100000 G
+b100000 J
+b11 9
+b11 F
+b11 P
+b11 S
+b100 >
+b100 C
+b100 Q
+b100000 :
+b100000 K
+b100000 N
+b11000 "
+b11000 +
+b11000 8
+b11000 <
+b11000 H
+b11000 M
+1#
+#65
+0#
+#70
+b101000 ;
+b101000 G
+b101000 J
+b10 =
+b10 B
+b10 E
+b101000 :
+b101000 K
+b101000 N
+b100000 "
+b100000 +
+b100000 8
+b100000 <
+b100000 H
+b100000 M
+b10 9
+b10 F
+b10 P
+b10 S
+b11 >
+b11 C
+b11 Q
+1#
+#75
+0#
+#80
+b1 =
+b1 B
+b1 E
+b110000 ;
+b110000 G
+b110000 J
+b1 9
+b1 F
+b1 P
+b1 S
+b10 >
+b10 C
+b10 Q
+b110000 :
+b110000 K
+b110000 N
+b101000 "
+b101000 +
+b101000 8
+b101000 <
+b101000 H
+b101000 M
+1#
+#85
+0#
+#90
+b10 3
+b10 4
+1.
+b111000 ;
+b111000 G
+b111000 J
+b0 =
+b0 B
+b0 E
+b111000 :
+b111000 K
+b111000 N
+b110000 "
+b110000 +
+b110000 8
+b110000 <
+b110000 H
+b110000 M
+b0 9
+b0 F
+b0 P
+b0 S
+b1 >
+b1 C
+b1 Q
+1#
+#95
+0#
+#100
+0.
+bx111 =
+bx111 B
+bx111 E
+b0x000000 ;
+b0x000000 G
+b0x000000 J
+1!
+00
+x/
+01
+0-
+x,
+b1111111111111111 9
+b1111111111111111 F
+b1111111111111111 P
+b1111111111111111 S
+b0 >
+b0 C
+b0 Q
+b1000000 :
+b1000000 K
+b1000000 N
+b111000 "
+b111000 +
+b111000 8
+b111000 <
+b111000 H
+b111000 M
+b10 2
+b10 5
+1#
+#103
+b0 3
+b0 4
+1(
