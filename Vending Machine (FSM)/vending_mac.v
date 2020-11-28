@@ -1,49 +1,42 @@
-module ven ();
-
-	input wire D,clk,reset;
-	input wire[1:0] m;
-	output reg[1:0] z;
-
+module vending_mac (output reg [1:0] z, input wire reset, clk, n, d, q, D);
 	reg [2:0] current_state, next_state;
-	parameter a=3'b000, b=3'b001, c=3'b010, d=3'b011, e=3'b100, f=3'b101;
+	parameter s0 = 3'b000, s1 = 3'b001, s2 = 3'b010, s3 = 3'b011, s4 = 3'b100, s5 = 3'b101, s6 = 3'b110;
 
-	// State Memory block
-	always@(posedge clk, negedge reset)
+	//STATE MEMORY
+	always @ (posedge clk or negedge reset)
 	begin
-		if(!reset)
-			current_state <= a;
+		if (!reset)
+			current_state <= s0;
 		else
 			current_state <= next_state;
 	end
 
-	// Next State Logic block
-	// Nickel(m = 2'b00), Dimes(m = 2'b01), Quarters(m = 2'b10), Done(D = 1'b1)
-	always@(current_state or D)
+	//NEXT STATE LOGIC
+	// n-Nickel, d-Dime, q-Quarter, D-Done
+	always @ (current_state or n or d or q or D)
 	begin
-		case(current_state)
-			a: if(m==2'b00 and D==1'b0) next_state = b; else if(m==2'b01 and D==1'b0) next_state = c; else if(m==2'b10 and D==1'b0) next_state = f; else next_state = a;
-			b: if(m==2'b00 and D==1'b0) next_state = c; else if(m==2'b01 and D==1'b0) next_state = d; else if(m==2'b10 and D==1'b0) next_state = e; else next_state = a;
-			c: if(m==2'b00 and D==1'b0) next_state = d; else if(m==2'b01 and D==1'b0) next_state = e; else if(m==2'b10 and D==1'b0) next_state = f; else next_state = a;
-			d: if(m==2'b00 and D==1'b0) next_state = e; else if(m==2'b01 and D==1'b0) next_state = f; else if(m==2'b10 and D==1'b0) next_state = f; else next_state = a;
-			e: if(m==2'b00 and D==1'b0) next_state = f; else if(m==2'b01 and D==1'b0) next_state = f; else if(m==2'b10 and D==1'b0) next_state = f; else next_state = a;
-			f: if(m==2'b00 and D==1'b0) next_state = f; else if(m==2'b01 and D==1'b0) next_state = f; else if(m==2'b10 and D==1'b0) next_state = f; else next_state = a;
-			default: next_state = a;
+		case (current_state)
+			s0: if(n) next_state=s1; else if(d) next_state=s2; else if(q) next_state=s5;
+			s1: if(n) next_state=s2; else if(d) next_state=s3; else if(q) next_state=s6;
+			s2: if(D) next_state=s0; else if(n) next_state=s3; else if(d) next_state=s4; else if(q) next_state=s6;
+			s3: if(D) next_state=s0; else if(n) next_state=s4; else if(d) next_state=s5; else if(q) next_state=s6;
+			s4: if(D) next_state=s0; else if(n) next_state=s5; else if(d) next_state=s6; else if(q) next_state=s6;
+			s5: if(D) next_state=s0; else if(n) next_state=s6; else if(d) next_state=s6; else if(q) next_state=s6;
+			s6: if(D) next_state=s0; else if(n) next_state=s6; else if(d) next_state=s6; else if(q) next_state=s6;
+			default: next_state=s0;
 		endcase
 	end
-
-	// Output Logic block
-	// Pencil(z = 2'b00), Eraser(z = 2'b01), Pen(z = 2'b10) 
-	always@(current_state or D)
+	
+	//OUTPUT LOGIC
+	always @ (current_state or D)
 	begin
-		case(current_state)
-			a: if(m==2'b01 and D==1'b1) z = 2'b01; else if(m==2'b10 and D==1'b1) z = 2'b10; else z = 2'b00;
-			b: if(m==2'b00 and D==1'b1) z = 2'b01; else if(m==2'b01 and D==1'b1) z = 2'b01; else if(m==2'b10 and D==1'b1) z = 2'b11; else z = 2'b00;
-			c: if(m==2'b00 and D==1'b1) z = 2'b01; else if(m==2'b01 and D==1'b1) z = 2'b10; else if(m==2'b10 and D==1'b1) z = 2'b11; else z = 2'b00;
-			d: if(m==2'b00 and D==1'b1) z = 2'b10; else if(m==2'b01 and D==1'b1) z = 2'b10; else if(m==2'b10 and D==1'b1) z = 2'b11; else z = 2'b00;
-			e: if(m==2'b00 and D==1'b1) z = 2'b10; else if(m==2'b01 and D==1'b1) z = 2'b11; else if(m==2'b10 and D==1'b1) z = 2'b11; else z = 2'b00;
-			f: if(m==2'b00 and D==1'b1) z = 2'b11; else if(m==2'b01 and D==1'b1) z = 2'b11; else if(m==2'b10 and D==1'b1) z = 2'b11; else z = 2'b00;
+		case (current_state)
+			s2:if(D) z=2'b01;//pencil 
+			s3:if(D) z=2'b01;//pencil 
+			s4:if(D) z=2'b10;//eraser 
+			s5:if(D) z=2'b10;//eraser 
+			s6:if(D) z=2'b11;//pen 
 			default: z=2'b00;
 		endcase
 	end
 endmodule
-
