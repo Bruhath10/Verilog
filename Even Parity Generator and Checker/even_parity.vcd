@@ -1,0 +1,52 @@
+$date
+	Mon Oct 05 20:52:24 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module even_parity_tb $end
+$var wire 1 ! p $end
+$var reg 1 " x $end
+$var reg 1 # y $end
+$var reg 1 $ z $end
+$scope module p1 $end
+$var wire 1 ! p $end
+$var wire 1 " x $end
+$var wire 1 # y $end
+$var wire 1 $ z $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0$
+0#
+0"
+0!
+$end
+#10
+1!
+1$
+#20
+0$
+1#
+#30
+0!
+1$
+#40
+1!
+0$
+0#
+1"
+#50
+0!
+1$
+#60
+0$
+1#
+#70
+1!
+1$
