@@ -1,42 +1,37 @@
-`include "ven.v"
-module tb (input reg [1:0]m, D, clk, reset, output [1:0]z);
+`include "vm.v"
 
-	ven v1(D, m[1:0], clk, reset, z[1:0]);
-
-	initial 
-    begin
-        $dumpfile("ven.vcd");
-        $dumpvars(0, tb);
-    end
-
-	initial
-	begin
-		clk = 1'b0;
-		reset = 1'b1;
-		D = 1'b0;
-		#130 $finish;
-	end
+module vm_tb();
+	reg clk,reset,n,d,q,D;
+	wire [1:0] z;
+	vending_mac v1(z,reset,clk,n,d,q,D);
 
 	always
-		#5 clk = ~clk;
-	
+		#10 clk = ~clk;
 	initial
 	begin
-		#12 m = 2'b00, D=1'b0;
-		#10 m = 2'b00, D=1'b1;
-		#10 m = 2'b01, D=1'b1;
-		#10 m = 2'b01, D=1'b0;
-		#10 m = 2'b01, D=1'b1;
-		#10 m = 2'b00, D=1'b0;
-		#10 m = 2'b10, D=1'b1;
-		#10 m = 2'b10, D=1'b0;
-		#10 m = 2'b01, D=1'b1;
-		#10 m = 2'b01, D=1'b0;
-		#10 m = 2'b01, D=1'b0;
-		#10 m = 2'b00, D=1'b1;
+		$dumpfile("vending_mac.vcd");
+		$dumpvars(0, vm_tb);
 	end
 
 	initial
-    begin
-        $monitor("t = %3d m = %b D = %b z = %b \n ", $time, m, D, z);
-    end
+	begin
+		clk = 1'b0; reset = 1'b0; n=1'b0; d=1'b0; q=1'b0; D=1'b0;
+		#0 reset = 1'b1;
+		#6 n=1'b1; D=1'b1;
+		#6 n=1'b0; D=1'b0;
+		#15 q=1'b1;D=1'b1;
+		#5 q=1'b0;D=1'b0;
+		#15 d=1'b1;D=1'b1;
+		#5 d=1'b0;D=1'b0;
+		#15 n=1'b1;d=1'b1;D=1'b1;
+		#5 n=1'b0;d=1'b0;D=1'b0;
+		#15 n=1'b1;q=1'b1;D=1'b1;
+		#5 n=1'b0;q=1'b0;D=1'b0;
+		#20 $finish;
+	end
+
+	initial
+	begin
+	$monitor("t=%3d, n=%b, d=%b, q=%b, D=%b, z=%b",$time,n,d,q,D,z);
+	end
+endmodule
